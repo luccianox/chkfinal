@@ -18,7 +18,7 @@ import (
 	"github.com/01-edu/z01"
 )
 
-func mainn() {
+func main() {
 	if len(os.Args) != 3 {
 
 		return
