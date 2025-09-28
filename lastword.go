@@ -8,21 +8,31 @@ Expected function
 */
 package main
 
+import "fmt"
+
 func LastWord(s string) string {
 
-	end := len(s) - 1
+	j := len(s) - 1
 
-	for end >= 0 && s[end] == ' ' {
+	for j >= 0 && s[j] == ' ' {
 
-		end--
+		j--
 	}
-	if end < 0 {
+	if j < 0 {
 
 		return "\n"
 	}
-	start := end
-	for start >= 0 && s[start] != ' ' {
-		start--
+
+	i := j
+
+	for i >= 0 && s[i] != ' ' {
+
+		i--
 	}
-	return s[start+1:end+1] + "\n"
+	return s[i+1:j+1] + "\n"
+}
+func main() {
+	fmt.Print(LastWord("this        ...       is sparta, then again, maybe    not"))
+	fmt.Print(LastWord(" lorem,ipsum "))
+	fmt.Print(LastWord(" "))
 }
