@@ -1,14 +1,11 @@
-/*expandstr
+/*
+reversestrcap
 Instructions
-Write a program that takes a string and displays it with exactly three spaces between each word,
-with no spaces nor tabs at neither the beginning nor the end.
+Write a program that takes one or more arguments and that, for each argument, puts the last letter
+of each word in uppercase and the rest in lowercase. It displays the result followed by a newline ('\n').
 
-The string will be followed by a newline ('\n').
-
-A word, in this exercise, is a sequence of visible characters.
-
-If the number of arguments is not 1, or if there are no word, the program displays nothing.*/
-
+If there are no argument, the program displays nothing.
+*/
 package main
 
 import (
@@ -17,46 +14,37 @@ import (
 	"github.com/01-edu/z01"
 )
 
+func toLower(r rune) rune {
+
+	if r >= 'A' && r <= 'Z' {
+
+		return r + 32
+	}
+	return r
+}
+func toUpper(r rune) rune {
+
+	if r >= 'a' && r <= 'z' {
+		return r - 32
+	}
+	return r
+}
 func main() {
 
-	if len(os.Args) < 2 {
+	s1 := os.Args[1:]
 
-		return
+	for _, ch := range s1 {
+
+		for i, v := range ch {
+
+			if i == len(ch)-1 || ch[i+1] == ' ' {
+
+				z01.PrintRune(toUpper(v))
+			} else {
+				z01.PrintRune(toLower(v))
+			}
+		}
+		z01.PrintRune('\n')
 	}
 
-	s1 := []rune(os.Args[1])
-	words := []string{}
-
-	// loop through s1
-
-	for i := 0; i < len(s1); i++ {
-
-		//skip leading spaces and tabs
-
-		for i < len(s1) && (s1[i] == ' ' || s1[i] == '\t') {
-			i++
-		}
-		//select a word
-		word := ""
-		for i < len(s1) && (s1[i] != ' ' && s1[i] != '\t') {
-			word += string(s1[i])
-			i++
-		}
-		if word != "" {
-			words = append(words, word)
-		}
-	}
-	for k, v := range words {
-
-		for _, ch := range v {
-
-			z01.PrintRune(ch)
-		}
-		if k < len(words) {
-			z01.PrintRune(' ')
-			z01.PrintRune(' ')
-			z01.PrintRune(' ')
-		}
-	}
-	z01.PrintRune('\n')
 }
