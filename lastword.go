@@ -8,8 +8,6 @@ Expected function
 */
 package main
 
-import "fmt"
-
 func LastWord(s string) string {
 
 	j := len(s) - 1
@@ -30,9 +28,4 @@ func LastWord(s string) string {
 		i--
 	}
 	return s[i+1:j+1] + "\n"
-}
-func main() {
-	fmt.Print(LastWord("this        ...       is sparta, then again, maybe    not"))
-	fmt.Print(LastWord(" lorem,ipsum "))
-	fmt.Print(LastWord(" "))
 }
