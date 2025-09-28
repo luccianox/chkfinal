@@ -55,6 +55,3 @@ func PrintMemory(arr [10]byte) {
 	}
 	z01.PrintRune('\n')
 }
-func main() {
-	PrintMemory([10]byte{'h', 'e', 'l', 'l', 'o', 16, 21, '*'})
-}
