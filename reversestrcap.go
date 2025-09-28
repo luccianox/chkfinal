@@ -44,6 +44,6 @@ func main() {
 				z01.PrintRune(toUpper(v))
 			}
 		}
+		z01.PrintRune('\n')
 	}
-	z01.PrintRune('\n')
 }
