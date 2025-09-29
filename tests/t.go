@@ -1,11 +1,3 @@
-/*
-reversestrcap
-Instructions
-Write a program that takes one or more arguments and that, for each argument, puts the last letter
-of each word in uppercase and the rest in lowercase. It displays the result followed by a newline ('\n').
-
-If there are no argument, the program displays nothing.
-*/
 package main
 
 import (
@@ -14,37 +6,43 @@ import (
 	"github.com/01-edu/z01"
 )
 
-func toLower(r rune) rune {
-
-	if r >= 'A' && r <= 'Z' {
-
-		return r + 32
-	}
-	return r
-}
-func toUpper(r rune) rune {
-
-	if r >= 'a' && r <= 'z' {
-		return r - 32
-	}
-	return r
-}
 func main() {
 
-	s1 := os.Args[1:]
+	if len(os.Args) != 3 {
 
-	for _, ch := range s1 {
+		return
+	}
+	s1 := os.Args[1]
+	s2 := os.Args[2]
+	result := ""
 
-		for i, v := range ch {
+	for _, a := range s1 {
+		found := false
+		for _, b := range s2 {
 
-			if i == len(ch)-1 || ch[i+1] == ' ' {
+			if a == b {
 
-				z01.PrintRune(toUpper(v))
-			} else {
-				z01.PrintRune(toLower(v))
+				found = true
+				break
 			}
 		}
-		z01.PrintRune('\n')
-	}
+		if found {
+			dup := false
+			for _, c := range result {
 
+				if c == a {
+					dup = true
+					break
+				}
+			}
+			if !dup {
+				result += string(a)
+			}
+		}
+	}
+	for _, ch := range result {
+
+		z01.PrintRune(ch)
+	}
+	z01.PrintRune('\n')
 }
