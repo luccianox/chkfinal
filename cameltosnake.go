@@ -17,7 +17,6 @@ No two capitalized letters shall follow directly each other (CamelCAse).
 Numbers or punctuation are not allowed in the word anywhere (camelCase1).
 Expected function
 */
-package main
 
 func CamelToSnakeCase(s string) string {
 	result := ""
