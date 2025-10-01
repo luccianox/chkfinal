@@ -1,12 +1,12 @@
 package main
 
 func NotDecimal(dec string) string {
-	// case 1: empty
+	// 1. Empty input
 	if dec == "" {
 		return "\n"
 	}
 
-	// check if it's a valid number (digits, '-', '.')
+	// 2. Check validity: only digits, '.', or '-'
 	for i := 0; i < len(dec); i++ {
 		ch := dec[i]
 		if !(ch >= '0' && ch <= '9' || ch == '.' || ch == '-') {
@@ -14,7 +14,7 @@ func NotDecimal(dec string) string {
 		}
 	}
 
-	// find the dot (if any)
+	// 3. Find the decimal point
 	dot := -1
 	for i := 0; i < len(dec); i++ {
 		if dec[i] == '.' {
@@ -23,12 +23,12 @@ func NotDecimal(dec string) string {
 		}
 	}
 
-	// no dot
+	// 4. If no dot → return as is
 	if dot == -1 {
 		return dec + "\n"
 	}
 
-	// check if only zeros after dot
+	// 5. Check if everything after the dot is zero
 	allZeros := true
 	for i := dot + 1; i < len(dec); i++ {
 		if dec[i] != '0' {
@@ -40,7 +40,7 @@ func NotDecimal(dec string) string {
 		return dec + "\n"
 	}
 
-	// remove the dot manually
+	// 6. Remove the dot
 	result := ""
 	for i := 0; i < len(dec); i++ {
 		if i == dot {
@@ -49,5 +49,22 @@ func NotDecimal(dec string) string {
 		result += string(dec[i])
 	}
 
-	return result + "\n"
+	// 7. Remove leading zeros (but keep sign if negative)
+	sign := ""
+	if result[0] == '-' {
+		sign = "-"
+		result = result[1:]
+	}
+	i := 0
+	for i < len(result) && result[i] == '0' {
+		i++
+	}
+	result = result[i:]
+
+	// If result becomes empty, it's just "0"
+	if result == "" {
+		result = "0"
+	}
+
+	return sign + result + "\n"
 }
